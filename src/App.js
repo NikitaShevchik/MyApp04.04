@@ -1,14 +1,20 @@
 import React from 'react';
 
 function App() {
-  function func(arg, event, arg2) {
-    console.log(arg, event, arg2); // объект с событием
-  }
+  const arr = ['a', 'b', 'c', 'd', 'e'];
 
-  return <div>
-    <button onClick={event => func('hello', event, 'good bye')}>act</button>
-  </div>;
+  let res = arr.map(function (item, index) {
+    return <li key={index}>{item}</li>
+  })
+
+  return <ul>
+    {res}
+  </ul>;
 }
+//Вывод массива объектов в JSX
+
+
+// Теги в массивах и циклах JSX
 
 
 // Объект Event в React
