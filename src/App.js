@@ -1,45 +1,23 @@
 import React from 'react';
 
 function App() {
-  return <div>
-    Another text
-    <p style={{ backgroundColor: "red" }}>Первый абзац</p>
-    <p style={{ backgroundColor: "yellow" }}>Второй абзац</p>
-    <p style={{ backgroundColor: "teal" }}>Третий абзац</p>
-    <p>Четвертый абзац</p>
-    <input type="text" /><br /><input type="text" /><br /><input type="text" />
-    <ul>
-      <li>1</li>
-      <li>2</li>
-      <li>3</li>
-      <li>4</li>
-      <li>5</li>
-      <li>6</li>
-      <li>7</li>
-      <li>8</li>
-      <li>9</li>
-      <li>10</li>
+  const arr = [1, 2, 3, 4, 5, 6, 7, 1];
+
+  function generateLi() {
+    setTimeout(() => {
+      let uli = document.querySelector('.ulchik')
+      uli.innerHTML = "";
+      for (let i = 0; i < arr.length; i++) {
+        uli.innerHTML += `<li>${arr[i]}</li>`
+      }
+    }, 100)
+  }
+
+  return <>
+    <ul className='ulchik'>
     </ul>
-    <table style={{ fontSize: "42px" }}>
-      <tbody>
-        <tr>
-          <td>Jakob</td>
-          <td>Andre</td>
-          <td>Paul</td>
-        </tr>
-        <tr>
-          <td>Semio</td>
-          <td>Arer</td>
-          <td>Kipo</td>
-        </tr>
-        <tr>
-          <td>Alig</td>
-          <td>Afvce</td>
-          <td>Jfia</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+    {generateLi()}
+  </>
 }
 
 export default App;
@@ -58,3 +36,41 @@ export default App;
 // Сделайте внутри дива таблицу с тремя рядами и тремя колонками.
 // Задача 3.6
 // Сделайте внутри дива три абзаца с различными CSS классами.
+// Задача 4.1
+// В следующем коде автор кода хочет вернуть тег ul:
+// function App() {
+// 	return
+// 		<ul>
+// 			<li>text1</li>
+// 			<li>text2</li>
+// 			<li>text3</li>
+// 		</ul>;
+// }
+// Код, однако, не работает. Исправьте ошибку автора кода.
+// Задача 4.2
+// Автор следующего кода хочет вернуть сразу два тега ul:
+// function App() {
+// 	return <ul>
+// 		<li>text1</li>
+// 		<li>text2</li>
+// 		<li>text3</li>
+// 	</ul>
+// 	<ul>
+// 		<li>text1</li>
+// 		<li>text2</li>
+// 		<li>text3</li>
+// 	</ul>;
+// }
+// Код, однако, не работает. Исправьте ошибку автора кода. Предложите два способа решения проблемы.
+// Задача 4.3
+// Автор следующего кода хочет вернуть инпут:
+// function App() {
+// 	return <input>;
+// }
+// Код, однако, не работает. Исправьте ошибку автора кода.
+// Задача 4.4
+// Автор следующего кода хочет вернуть три инпута:
+// function App() {
+// 	return <input><input><input>;
+// }
+// Код, однако, не работает. Исправьте ошибку автора кода.
