@@ -1,17 +1,17 @@
 import React from 'react';
 
 function App() {
-  function alertF(num) {
-    alert(num)
+  function func(arg, event, arg2) {
+    console.log(arg, event, arg2); // объект с событием
   }
 
   return <div>
-    <button onClick={() => alertF(1)}>act1</button>
-    <button onClick={() => alertF(2)}>act2</button>
-    <button onClick={() => alertF(3)}>act3</button>
+    <button onClick={event => func('hello', event, 'good bye')}>act</button>
   </div>;
 }
 
+
+// Объект Event в React
 
 // Навешивание событий в JSX
 
