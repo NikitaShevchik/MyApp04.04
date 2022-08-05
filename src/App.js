@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { nanoid } from 'nanoid'; // Библиотека позволяющая генерировать случайные сроки (для айди)
 
 function App() {
@@ -8,6 +8,10 @@ function App() {
     { id: id(), name: 'user3', surn: 'surn3', age: 32 },
   ];
 
+  let [name, setName] = useState()
+  console.log(name)
+
+  // State
 
   function id() {
     return nanoid()
