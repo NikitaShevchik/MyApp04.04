@@ -1,19 +1,42 @@
 import React from 'react';
+import { nanoid } from 'nanoid'; // Библиотека позволяющая генерировать случайные сроки (для айди)
 
 function App() {
-  const prods = [
-    { id: 1, name: 'product1', cost: 100 },
-    { id: 2, name: 'product2', cost: 200 },
-    { id: 3, name: 'product3', cost: 300 },
+  const users = [
+    { id: id(), name: 'user1', surn: 'surn1', age: 30 },
+    { id: id(), name: 'user2', surn: 'surn2', age: 31 },
+    { id: id(), name: 'user3', surn: 'surn3', age: 32 },
   ];
 
-  const res = prods.map(function (item) {
-    return <li key={item.id}>{item.name} {item.cost}$</li>
-  })
 
-  return <ul>
-    {res}
-  </ul>;
+  function id() {
+    return nanoid()
+  }
+  // Библиотека наноид позволяет генерировать случайный айди который мы добавляем элекентам, 
+  // а затем с помощью метода мап мы можем присваивать уникальные айди в массиве с 
+  // объектами или просто объектам. По типу баз данный ноСКЛ, где айди является случайно 
+  // сгенирированая строка. Коллизий не должно возникнуть. В базах данных типа СКЛ айди это число.
+
+  const rows = users.map(function (item) {
+    return <tr key={item.id}>
+      <td>{item.name}</td>
+      <td>{item.surn}</td>
+      <td>{item.age}</td>
+    </tr>;
+  });
+
+  return <table>
+    <thead>
+      <tr>
+        <td>Имя</td>
+        <td>Фамилия</td>
+        <td>Возраст</td>
+      </tr>
+    </thead>
+    <tbody>
+      {rows}
+    </tbody>
+  </table>
 }
 // Вывод массива объектов в виде HTML таблицы
 
