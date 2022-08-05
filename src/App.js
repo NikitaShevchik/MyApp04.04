@@ -1,21 +1,25 @@
 import React from 'react';
 
 function App() {
-  const arr = ['a', 'b', 'c', 'd', 'e'];
+  const prods = [
+    { id: 1, name: 'product1', cost: 100 },
+    { id: 2, name: 'product2', cost: 200 },
+    { id: 3, name: 'product3', cost: 300 },
+  ];
 
-  let res = arr.map(function (item, index) {
-    return <li key={index}>{item}</li>
+  const res = prods.map(function (item) {
+    return <li key={item.id}>{item.name} {item.cost}$</li>
   })
 
   return <ul>
     {res}
   </ul>;
 }
+// Вывод массива объектов в виде HTML таблицы
+
 //Вывод массива объектов в JSX
 
-
 // Теги в массивах и циклах JSX
-
 
 // Объект Event в React
 
