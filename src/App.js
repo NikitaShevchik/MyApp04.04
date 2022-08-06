@@ -8,8 +8,15 @@ function App() {
     { id: id(), name: 'user3', surn: 'surn3', age: 32 },
   ];
 
-  let [name, setName] = useState()
-  console.log(name)
+  let [name, setName] = useState('Nik'); // деструктиризация
+  let [cost, setCost] = useState('1000');
+  let [inCart, setInCart] = useState(false) // логический стейт
+  let [count, setCount] = useState(0)
+
+  let [user, setUser] = useState('Nikita');
+  let [surn, setSurn] = useState('Shevchik');
+  let [age, setAge] = useState(22);
+  let [ban, setBan] = useState(false)
 
   // State
 
@@ -29,18 +36,35 @@ function App() {
     </tr>;
   });
 
-  return <table>
-    <thead>
-      <tr>
-        <td>Имя</td>
-        <td>Фамилия</td>
-        <td>Возраст</td>
-      </tr>
-    </thead>
-    <tbody>
-      {rows}
-    </tbody>
-  </table>
+  // реактивность - изменение по нажатию на кнопку (грубо говоря)
+  return <div>
+    <div>
+      <p>{user}</p>
+      <p>{surn}</p>
+      <p>{age}</p>
+      <p>{!ban ? 'Забаненый' : 'Не забаненый'}</p>
+      <button onClick={() => setUser('Oleg')}>Поменять имя</button>
+      <button onClick={() => setSurn('Olegov')}>Поменять фамильку</button>
+      <button onClick={() => setAge(age + 1)}>Увелить возраст</button>
+      <button onClick={() => setAge(age - 1)}>Уменьшить возраст</button>
+      <button disabled={ban} onClick={() => setBan(!ban)}>Разбанить</button>
+      <button disabled={!ban} onClick={() => setBan(!ban)}>Забанить</button>
+    </div>
+    <p>{count}</p>
+    <button onClick={() => setCount(count + 1)}>+1</button>
+    <button onClick={() => setCount(count + 10)}>+10</button>
+    <button onClick={() => setCount(count + 100)}>+100</button>
+    <button onClick={() => setCount(count + 1000)}>+1000</button>
+    <button onClick={() => setCount(count + 10000)}>+10000</button>
+    <button onClick={() => setCount(count + 100000)}>+100000</button>
+    <button onClick={() => setCount(count + 1000000)}>+1000000</button>
+    <p>{name}</p>
+    <p>{cost}</p>
+    <button onClick={() => setName('Мария')}>Изменить имя</button>
+    <button onClick={() => setCost('100$ час')}>Изменить цену</button>
+    <p>{inCart ? '1 товар в корзине' : 'Корзина пуста'}</p>
+    <button onClick={() => setInCart(!inCart)}>{!inCart ? 'Добавить в корзину' : 'Убрать из корзины'}</button>
+  </div>
 }
 // Вывод массива объектов в виде HTML таблицы
 
