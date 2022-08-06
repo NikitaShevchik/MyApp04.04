@@ -91,14 +91,24 @@ function App1() {
 // Изменение данных при выводе
 
 function App2() {
-  let [value, setValue] = useState('Текст инпута 1');
-  let [value2, setValue2] = useState('Текст никиты')
+  let [value, setValue] = useState('');
+  let [value2, setValue2] = useState('');
+  let [value3, setValue3] = useState('');
+  let [value4, setValue4] = useState('');
+  let [value5, setValue5] = useState('');
+
+  // function celsi() {
+  //   return ((value - 32) / 1.8).toFixed(1);
+  // }
 
   return <div>
+    <p>Введите 5 чисел</p>
     <input value={value} onChange={(event) => setValue(event.target.value)} />
     <input value={value2} onChange={(event) => setValue2(event.target.value)} />
-    <p>{value}</p>
-    <p>{value2}</p>
+    <input value={value3} onChange={(event) => setValue3(event.target.value)} />
+    <input value={value4} onChange={(event) => setValue4(event.target.value)} />
+    <input value={value5} onChange={(event) => setValue5(event.target.value)} />
+    <p>Среднее арифметическое: {(Number(value) + Number(value2) + Number(value3) + Number(value4) + Number(value5)) / 5}</p>
   </div>;
 }
 
