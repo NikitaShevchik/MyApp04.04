@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { nanoid } from 'nanoid'; // Библиотека позволяющая генерировать случайные сроки (для айди)
 
-function App() {
+function App1() {
   const users = [
     { id: id(), name: 'user1', surn: 'surn1', age: 30 },
     { id: id(), name: 'user2', surn: 'surn2', age: 31 },
@@ -79,9 +79,29 @@ function App() {
 // Вспомогательные функции 
 
 // Тернарный оператор ternary operator
-export default App;
-
 
 
 // Сделайте функцию getDigitsSum, которая будет находить сумму цифр переданного числа. 
 // С ее помощью выведите на экран сумму цифр числа 123.
+
+
+
+// Работа с инпутами в React
+
+// Изменение данных при выводе
+
+function App2() {
+  let [value, setValue] = useState('Текст инпута 1');
+  let [value2, setValue2] = useState('Текст никиты')
+
+  return <div>
+    <input value={value} onChange={(event) => setValue(event.target.value)} />
+    <input value={value2} onChange={(event) => setValue2(event.target.value)} />
+    <p>{value}</p>
+    <p>{value2}</p>
+  </div>;
+}
+
+
+
+export default App2;
