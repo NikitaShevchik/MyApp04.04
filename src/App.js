@@ -112,6 +112,9 @@ function App2() {
   </div>;
 }
 
+// Обработка данных формы по нажатию на кнопку в React
+
+
 
 
 export default App2;
