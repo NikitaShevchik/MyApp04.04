@@ -162,7 +162,7 @@ function App3() {
     <input onBlur={event => setResult(sumCount(event.target.value))} />
     <p>{!result ? 'Введите корректное число' : result}</p>
     <div>
-      <p>Тут покажем произведение делителей, чтобы это не значило</p>
+      <p>Тут покажем произведение делителей числа</p>
       <input onBlur={event => setDel(allDelMult(event.target.value))} />
       <p>{del}</p>
     </div>
@@ -359,9 +359,15 @@ function App10() {
   </div>
 }
 
-
 // Значения по умолчанию в React
+function App11() {
+  //  defaultChecked={true}
 
+  const [checked, setChecked] = useState(true);
 
+  return <div>
+    <input type="checkbox" defaultChecked={checked} />
+  </div>;
+}
 
-export default App10;
+export default App11;
