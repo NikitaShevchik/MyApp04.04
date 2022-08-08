@@ -279,11 +279,66 @@ function App6() {
 
 // Работа с селектами в React
 function App7() {
+  const cities = ['Минск', 'Москва', 'Санкт-Петербург', 'Казань'];
+  const [value, setValue] = useState('');
+
+  let valueCity = 0;
+  const generateOptions = cities.map((text, index) => { return <option value={valueCity = valueCity + 1} key={index}>{text}</option> })
+
   return <div>
-    Hello
-  </div>
+    <select value={value} onChange={event => setValue(event.target.value)}>
+      {generateOptions}
+    </select>
+    <p>
+      {value === '1' && 'Город Минск - столица Беларуси'}
+      {value === '2' && 'Город Москва - столица России'}
+      {value === '3' && 'Город Санкт-Петербург - замечательный город'}
+      {value === '4' && 'Город Казань - родина Татар'}
+    </p>
+  </div>;
+}
+
+function App8() {
+  const [value, setValue] = useState('');
+
+  return <div>
+    <p>Ваша возрастная группа:</p>
+    <select value={value} onChange={event => setValue(event.target.value)}>
+      <option value="1">от 0 до 12</option>
+      <option value="2">от 13 до 17</option>
+      <option value="3">от 18 до 25</option>
+      <option value="4">старше 25</option>
+    </select>
+    <p>
+      {value === '1' && 'Вы молод и вам меньше 12'}
+      {value === '2' && 'Вы подросток до 17'}
+      {value === '3' && 'Вы совершеннолетний'}
+      {value === '4' && 'Взрослый!'}
+    </p>
+  </div>;
 }
 
 
+// Пусть у нас опять пункты списка хранятся в массиве:
+// Давайте сформируем с помощью этого массива теги option, добавив им в качестве атрибутов value ключи элементов массива:
+// Используя сформированные теги создадим выпадающий список:
+// Выведем в абзац номер выбранного пункта:
+// А теперь выведем текст выбранного пункта, используя его номер и массив с текстами:
+// Соберем все вместе и получим следующий код:
+function App9() {
+  const optionsArray = ['Text 1', 'Text 2', 'Text 3']
+  const [value, setValue] = useState('');
 
-export default App7;
+  const generateOptions = optionsArray.map((text, index) => { return <option value={index} key={index}>{text}</option> })
+
+  return <div>
+    <select value={value} onChange={event => setValue(event.target.value)}>
+      {generateOptions}
+    </select>
+    <p>Вы выбрали {value}</p>
+    <p>Текст выбранной опции: {optionsArray[value]}</p>
+  </div>;
+}
+
+
+export default App9;
