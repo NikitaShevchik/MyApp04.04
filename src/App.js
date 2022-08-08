@@ -241,7 +241,49 @@ function App5() {
   return <div>
     <textarea value={value} onChange={event => two(event.target.value)} />
     <p>{result ? result : 'Введите корректные числа'}</p>
-    <button onClick={countSum}>G</button>
+    <button onClick={countSum}>GGG</button>
   </div>
 }
-export default App5;
+
+// Работа с чекбоксами в React
+function App6() {
+  const [checked, setChecked] = useState(false);
+  const [message, setMessage] = useState('Этот кусок текста видно только избранным');
+
+  let content;
+  if (checked) {
+    content = <div>
+      <h2>Ура, вам уже есть 18</h2>
+      <p>
+        здесь расположен контент только для взрослых
+      </p>
+    </div>
+  } else {
+    content = <div>
+      <p>
+        увы, вам еще нет 18 лет:(
+      </p>
+    </div>
+  }
+
+
+  return <div>
+    <span>Вы избранный?</span>
+    <input type="checkbox" checked={checked} onChange={() => setChecked(!checked)} style={{ cursor: 'pointer' }} />
+    <p>{checked ? message : ''}</p>
+  </div>
+
+}
+
+
+
+// Работа с селектами в React
+function App7() {
+  return <div>
+    Hello
+  </div>
+}
+
+
+
+export default App7;
