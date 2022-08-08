@@ -173,4 +173,75 @@ function App3() {
 
 // Дан инпут и абзац. В инпут вводится число. По потери фокуса выведите в абзац произведение делителей введенного числа.
 
-export default App3;
+
+
+
+// Пусть в textarea вводится текст. Сделайте так, чтобы в абзац выводился транслит вводимого текста.
+function App4() {
+  const [value, setValue] = useState('');
+
+  function translit(word) {
+    var answer = '';
+    var converter = {
+      'а': 'a', 'б': 'b', 'в': 'v', 'г': 'g', 'д': 'd',
+      'е': 'e', 'ё': 'e', 'ж': 'zh', 'з': 'z', 'и': 'i',
+      'й': 'y', 'к': 'k', 'л': 'l', 'м': 'm', 'н': 'n',
+      'о': 'o', 'п': 'p', 'р': 'r', 'с': 's', 'т': 't',
+      'у': 'u', 'ф': 'f', 'х': 'h', 'ц': 'c', 'ч': 'ch',
+      'ш': 'sh', 'щ': 'sch', 'ь': '', 'ы': 'y', 'ъ': '',
+      'э': 'e', 'ю': 'yu', 'я': 'ya',
+
+      'А': 'A', 'Б': 'B', 'В': 'V', 'Г': 'G', 'Д': 'D',
+      'Е': 'E', 'Ё': 'E', 'Ж': 'Zh', 'З': 'Z', 'И': 'I',
+      'Й': 'Y', 'К': 'K', 'Л': 'L', 'М': 'M', 'Н': 'N',
+      'О': 'O', 'П': 'P', 'Р': 'R', 'С': 'S', 'Т': 'T',
+      'У': 'U', 'Ф': 'F', 'Х': 'H', 'Ц': 'C', 'Ч': 'Ch',
+      'Ш': 'Sh', 'Щ': 'Sch', 'Ь': '', 'Ы': 'Y', 'Ъ': '',
+      'Э': 'E', 'Ю': 'Yu', 'Я': 'Ya'
+    };
+
+    for (var i = 0; i < word.length; ++i) {
+      if (converter[word[i]] == undefined) {
+        answer += word[i];
+      } else {
+        answer += converter[word[i]];
+      }
+    }
+
+    return answer;
+  }
+
+  return <div>
+    <textarea value={value} onChange={event => setValue(event.target.value)} />
+    <p>{translit(value)}</p>
+  </div>;
+}
+
+
+// Пусть в textarea на каждой строке вводятся числа. Сделайте так, чтобы по мере ввода в абзац выводилась сумма введенных чисел.
+function App5() {
+  let [value, setValue] = useState('');
+  let [result, setResult] = useState('');
+
+  function countSum() {
+    let values = value.split('\n');
+    let sum = 0;
+    for (let i of values) {
+      sum = sum + Number(i);
+    }
+    setResult(sum)
+  }
+
+
+  function two(a) {
+    setValue(a)
+    countSum()
+  }
+
+  return <div>
+    <textarea value={value} onChange={event => two(event.target.value)} />
+    <p>{result ? result : 'Введите корректные числа'}</p>
+    <button onClick={countSum}>G</button>
+  </div>
+}
+export default App5;
