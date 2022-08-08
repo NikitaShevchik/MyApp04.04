@@ -341,4 +341,27 @@ function App9() {
 }
 
 
-export default App9;
+//Работа с radio в React
+function App10() {
+  const [value, setValue] = useState('')
+
+  function changer(event) {
+    setValue(event.target.value)
+  }
+
+  return <div>
+    <input type="radio" name="radio" value="HTML" checked={value === "HTML" ? true : false} onChange={changer} /><>HTML</>
+    <br />
+    <input type="radio" name="radio" value="CSS" checked={value === "CSS" ? true : false} onChange={changer} /><>CSS</>
+    <br />
+    <input type="radio" name="radio" value="JS" checked={value === "JS" ? true : false} onChange={changer} /><>JS</>
+    <p>{value === "JS" ? 'ВЫБРАЛИ JS? ВЫ ПОТРЯСАЮЩИЙ' : value}</p>
+  </div>
+}
+
+
+// Значения по умолчанию в React
+
+
+
+export default App10;
