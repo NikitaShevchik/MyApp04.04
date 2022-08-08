@@ -91,30 +91,86 @@ function App1() {
 // Изменение данных при выводе
 
 function App2() {
-  let [value, setValue] = useState('');
-  let [value2, setValue2] = useState('');
-  let [value3, setValue3] = useState('');
-  let [value4, setValue4] = useState('');
-  let [value5, setValue5] = useState('');
+  let today = (new Date()).toISOString().slice(0, 10);
+  let [value, setValue] = useState(today);
+  let [value2, setValue2] = useState(today);
+  let [result, setResult] = useState('');
 
   // function celsi() {
   //   return ((value - 32) / 1.8).toFixed(1);
   // }
 
+  function counterDays() {
+    let date = Date.parse(value);
+    let date2 = Date.parse(value2);
+    if (date > date2) {
+      setResult((date - date2) / 86400000)
+    } else {
+      setResult((date2 - date) / 86400000)
+    }
+  }
+  // <p>Введите 2 даты в формате 2025-12-31</p>
+  // <input value={value} onChange={(event) => setValue(event.target.value)} />
+  // <input value={value2} onChange={(event) => setValue2(event.target.value)} />
+  // <button onClick={counterDays}>Разница в днях</button>
+  // <p>Результат: {!result ? 'Введите коректную дату' : result}</p>
+
+
   return <div>
-    <p>Введите 5 чисел</p>
+    <p>Введите 2 даты в формате 2025-12-31</p>
     <input value={value} onChange={(event) => setValue(event.target.value)} />
     <input value={value2} onChange={(event) => setValue2(event.target.value)} />
-    <input value={value3} onChange={(event) => setValue3(event.target.value)} />
-    <input value={value4} onChange={(event) => setValue4(event.target.value)} />
-    <input value={value5} onChange={(event) => setValue5(event.target.value)} />
-    <p>Среднее арифметическое: {(Number(value) + Number(value2) + Number(value3) + Number(value4) + Number(value5)) / 5}</p>
-  </div>;
+    <button onClick={counterDays}>Разница в днях</button>
+    <p>Результат: {!result ? 'Введите коректную дату' : result}</p>
+  </div>
 }
 
 // Обработка данных формы по нажатию на кнопку в React
 
+// Даны два инпута, две кнопки и абзац. Пусть в инпуты вводятся числа. 
+// По нажатию на первую кнопку найдите сумму чисел, а по нажатию на вторую кнопку - произведение. Результат выводите в абзац.
+
+// Даны два инпута, кнопка и абзац. Пусть в инпуты вводятся даты в формате '2025-12-31'. По нажатию на кнопку найдите разницу между датами в днях и результат выведите в абзац.
+// Модифицируйте предыдущую задачу так, чтобы по умолчанию в инпутах стояла текущая дата.
 
 
 
-export default App2;
+
+function App3() {
+  let [result, setResult] = useState('Результат будет тут');
+  let [del, setDel] = useState('')
+
+  function sumCount(number) {
+    let sum = 0;
+    for (let i of number) {
+      sum = sum + Number(i);
+    }
+    return sum
+  }
+
+  function allDelMult(number) {
+    let multiDel = 1;
+    for (let i = 2; i <= number; i++) {
+      if (number % i === 0) {
+        multiDel = multiDel * i;
+      }
+    }
+    return multiDel;
+  }
+
+  return <div>
+    <input onBlur={event => setResult(sumCount(event.target.value))} />
+    <p>{!result ? 'Введите корректное число' : result}</p>
+    <div>
+      <p>Тут покажем произведение делителей, чтобы это не значило</p>
+      <input onBlur={event => setDel(allDelMult(event.target.value))} />
+      <p>{del}</p>
+    </div>
+  </div>
+}
+
+// Дан инпут и абзац. В инпут вводится число. По потери фокуса выведите в абзац сумму цифр введенного числа.
+
+// Дан инпут и абзац. В инпут вводится число. По потери фокуса выведите в абзац произведение делителей введенного числа.
+
+export default App3;
