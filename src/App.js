@@ -406,6 +406,21 @@ function App12() {
 
 
 // Форма для добавления элементов в массив в React
+function App13() {
+  const [notes, setNotes] = useState(['Никита', 'Стас']);
+  const [value, setValue] = useState('');
 
+  const result = notes.map((note, index) => {
+    return <li key={index}>{note}</li>;
+  });
 
-export default App12;
+  return <div>
+    <ul>
+      {result}
+    </ul>
+    <input value={value} onChange={event => setValue(event.target.value)} onBlur={() => setNotes([...notes, value]) & setValue('')} />
+    <button onClick={() => setNotes([...notes, value]) & setValue('')} >Добавить в массив</button>
+  </div>;
+}
+
+export default App13;
