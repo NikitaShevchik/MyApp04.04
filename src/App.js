@@ -399,11 +399,13 @@ function App12() {
     <button onClick={() => setArray([...array, 5])}>Add 5</button>
     <button onClick={() => setArray([...array, 'Looney'])}>Add Looney</button>
     <button onClick={() => setArray([...array.slice(0, index), ...array.slice(index + 1)])}>Remove {array[index]}</button>
+    <button onClick={() => setArray([...array.slice(0, 3), '!!!', ...array.slice(3 + 1)])}>Change {array[3]} on !!!</button>
+    <button onClick={() => setArray([...array.reverse()])}>Перевернуть массив</button>
   </div>;
 }
 
 
-
+// Форма для добавления элементов в массив в React
 
 
 export default App12;
