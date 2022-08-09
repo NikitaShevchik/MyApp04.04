@@ -370,4 +370,40 @@ function App11() {
   </div>;
 }
 
-export default App11;
+
+
+
+
+// Реактивность массивов в React
+function App12() {
+  let [array, setArray] = useState(['Nikita', 'Andrew', 'Oleg', 'Kirill', 'Timafey', 'Egor']);
+  console.log(array)
+  // let copy = Object.assign([], notes);
+  // copy.push(6);
+  // setNotes(copy);
+
+  // console.log([...copy, 7])
+
+  // notes.push(6)
+
+  let result = array.map((value, index) => {
+    return <p key={index}>{value}</p>
+  })
+
+  let index = array.length - 1;
+
+  return <div>
+    {result}
+    <button onClick={() => setArray([...array, 'Tom'])}>Add Tom</button>
+    <button onClick={() => setArray([...array, 'Masha'])}>Add Masha</button>
+    <button onClick={() => setArray([...array, 5])}>Add 5</button>
+    <button onClick={() => setArray([...array, 'Looney'])}>Add Looney</button>
+    <button onClick={() => setArray([...array.slice(0, index), ...array.slice(index + 1)])}>Remove {array[index]}</button>
+  </div>;
+}
+
+
+
+
+
+export default App12;
