@@ -423,4 +423,25 @@ function App13() {
   </div>;
 }
 
-export default App13;
+
+// Реализация удаления элементов из массива в React
+function App14() {
+  const [notes, setNotes] = useState([1, 2, 3, 4, 5]);
+
+  const result = notes.map((note, index) => {
+    return <li key={index}>
+      {note}
+      <button onClick={() => remItem(index)}>delete</button>
+    </li>;
+  });
+
+  function remItem(index) {
+    setNotes([...notes.slice(0, index), ...notes.slice(index + 1)])
+  }
+
+  return <ul>
+    {result}
+  </ul>;
+}
+
+export default App14;
