@@ -444,4 +444,46 @@ function App14() {
   </ul>;
 }
 
-export default App14;
+
+
+// Привязка инпутов к массиву в React
+function getSum(arr) {
+  let sum = 0;
+  for (let i of arr) {
+    sum += Number(i);
+  }
+  return sum;
+}
+function getMiddle(arr) {
+  let sum = 0;
+  for (let i of arr) {
+    sum += Number(i);
+  }
+  return (sum / arr.length).toFixed(2);
+}
+function App15() {
+  let [notes, setNotes] = useState([1, 2, 3, 4, 5, 6, 7, 8])
+
+  function changer(index, event) {
+    setNotes([...notes.slice(0, index), event.target.value, ...notes.slice(index + 1)])
+  }
+
+  let result = notes.map((value, index) => {
+    return <input
+      value={value}
+      key={index}
+      onChange={event => changer(index, event)}
+    />
+  })
+
+  return <div>
+    {result}
+    <br />
+    <p>Сумма всех чисел: {getSum(notes) ? getSum(notes) : 'Уберите символы/буквы'}</p>
+    <p>Среднее арифметическое всех чисел: {getMiddle(notes) ? getMiddle(notes) : 'Уберите символы/буквы'}</p>
+  </div>
+}
+
+
+
+export default App15;
