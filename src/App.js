@@ -576,7 +576,6 @@ function App18() {
 
 
 // Реактивность объектов
-
 function App19() {
   let [obj, setObj] = useState({
     name: 'Nikita',
@@ -599,4 +598,88 @@ function App19() {
   </ul >
 }
 
-export default App19;
+
+const userObject = {
+  name: 'Nikita',
+  surname: 'Shevchik',
+  city: 'Minsk',
+}
+
+function App20() {
+  let [obj, setObj] = useState(userObject);
+  let [value, setValue] = useState('');
+
+
+  function changer(prop, event) {
+    setObj({ ...obj, ...{ [prop]: event.target.value } })
+  }
+
+  return <div>
+    {obj.name}-{obj.surname}-{obj.city}
+    <br />
+    <p>Изменить имя:</p>
+    <input value={obj.name} onChange={event => changer('name', event)} />
+    <br />
+    <p>Изменить фамилию</p>
+    <input value={obj.surname} onChange={event => changer('surname', event)} />
+    <br />
+    <p>Изменить город</p>
+    <input value={obj.city} onChange={event => changer('city', event)} />
+    {/* <br />
+    <p>Изменить фамилию:</p>
+    <input value={value} onChange={event => setValue(event.target.value)} onBlur={() => setObj({ ...obj, surname: value })} />
+    <br />
+    <p>Изменить город:</p>
+    <input value={value} onChange={event => setValue(event.target.value)} onBlur={event => setObj({ ...obj, city: event.target.value })} /> */}
+  </div>
+}
+
+// Выведите в абзаце год, месяц и день из даты, хранящейся в стейте, а также день недели, соответствующий ей.
+const initDate = {
+  year: 2022,
+  month: 9,
+  day: 3,
+}
+
+function App21() {
+  let [date, setDate] = useState(initDate);
+  let [value, setValue] = useState('')
+
+  function getWeek(date) {
+    let daysWeek = ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота']
+    let dw = new Date(date.year, date.month - 1, date.day).getDay()
+    return daysWeek[dw];
+  }
+
+  function changer(prop, event) {
+    setDate({ ...date, ...{ [prop]: event.target.value } })
+  }
+
+  return <div>
+    <div>Год:
+      <input style={{ width: '50px', marginLeft: '15px' }} placeholder='гггг' value={date.year} onChange={event => changer('year', event)} />
+    </div>
+    <br />
+    <div>Месяц:
+      <input style={{ width: '50px', marginLeft: '15px' }} placeholder='мм' value={date.month} onChange={event => changer('month', event)} />
+    </div>
+    <br />
+    <div>День:
+      <input style={{ width: '50px', marginLeft: '15px' }} placeholder='дд' value={date.day} onChange={event => changer('day', event)} />
+    </div>
+    <h2>День недели: {getWeek(date)}</h2>
+  </div>
+}
+
+
+
+// Реактивность массива объектов в React
+
+function App22() {
+
+  return <div>
+    Реактивность массива объектов в React
+  </div>
+}
+
+export default App21;
