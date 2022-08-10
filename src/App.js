@@ -575,4 +575,28 @@ function App18() {
 }
 
 
-export default App18;
+// Реактивность объектов
+
+function App19() {
+  let [obj, setObj] = useState({
+    name: 'Nikita',
+    surname: 'Shevchik',
+    age: 22
+  })
+
+  return <ul>
+    <li>{obj.name}</li>
+    <li>{obj.surname}</li>
+    <li>{obj.age}</li>
+
+    <button onClick={() => setObj({ ...obj, name: 'Vitya' })}>Изменить имя на Витя</button>
+    <br />
+    <button onClick={() => setObj({ ...obj, surname: 'Alexeev' })}> Изменить фамилию на Алексеев</button >
+    <br />
+    <button onClick={() => setObj({ ...obj, age: 33 })}>Изменить возраст на 33</button>
+
+    {console.log(obj)}
+  </ul >
+}
+
+export default App19;
