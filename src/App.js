@@ -447,22 +447,23 @@ function App14() {
 
 
 // Привязка инпутов к массиву в React
-function getSum(arr) {
-  let sum = 0;
-  for (let i of arr) {
-    sum += Number(i);
-  }
-  return sum;
-}
-function getMiddle(arr) {
-  let sum = 0;
-  for (let i of arr) {
-    sum += Number(i);
-  }
-  return (sum / arr.length).toFixed(2);
-}
 function App15() {
   let [notes, setNotes] = useState([1, 2, 3, 4, 5, 6, 7, 8])
+
+  function getSum(arr) {
+    let sum = 0;
+    for (let i of arr) {
+      sum += Number(i);
+    }
+    return sum;
+  }
+  function getMiddle(arr) {
+    let sum = 0;
+    for (let i of arr) {
+      sum += Number(i);
+    }
+    return (sum / arr.length).toFixed(2);
+  }
 
   function changer(index, event) {
     setNotes([...notes.slice(0, index), event.target.value, ...notes.slice(index + 1)])
@@ -484,6 +485,44 @@ function App15() {
   </div>
 }
 
+// Редактирование массива в React
+
+function App16() {
+  let [notes, setNotes] = useState([1, 2, 3])
+  let [edit, setEdit] = useState(null);
+
+  const result = notes.map((value, index) => { return <li key={index} onClick={() => setEdit(index)}>{value}</li> })
+
+  function changeItem(event) {
+    setNotes([...notes.slice(0, edit), event.target.value, ...notes.slice(edit + 1)])
+  }
+
+  return <ul>
+    {result}
+    <input value={edit ? notes[edit] : ''} onChange={changeItem} />
+  </ul>
+}
 
 
-export default App15;
+// Выведите элементы этого массива в виде списка ul. 
+// Под списком реализуйте инпут для редактирования пунктов списка. 
+// Пусть в конце каждой li стоит кнопка, по нажатию на которую будет начинаться редактирование этой li.
+
+function App17() {
+  let [notes, setNotes] = useState(['a', 'b', 'c', 'd', 'e']);
+  let [editor, setEditor] = useState('');
+  let [disable, setDisable] = useState(true);
+
+  let result = notes.map((value, index) => { return <li key={index}><div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', width: '200px' }}><div>{value}</div><button style={{ marginLeft: '15px', borderRadius: '5px', backgroundColor: 'yellow', border: '1px solid #000' }} onClick={() => setEditor(Number(index)) & setDisable(false)}>Редактировать</button></div></li> })
+
+  function changer(event) {
+    setNotes([...notes.slice(0, editor), event.target.value, ...notes.slice(editor + 1)])
+  }
+
+  return <ul>
+    {result}
+    <input onBlur={event => setDisable(true)} value={editor ? notes[editor] : (editor === 0 ? notes[editor] : '')} disabled={disable} onChange={changer} />
+  </ul>
+}
+
+export default App17;
