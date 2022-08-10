@@ -525,4 +525,54 @@ function App17() {
   </ul>
 }
 
-export default App17;
+
+
+// Под списком реализуйте инпут для редактирования существующих и добавления новых пунктов списка.
+function App18() {
+  const [notes, setNotes] = useState(['a', 'b', 'c', 'd', 'e']);
+  const [edit, setEdit] = useState(null);
+  const [create, setCreate] = useState('');
+
+  let result = notes.map((value, index) => {
+    return <li onClick={() => setEdit(index)} key={index}>{value}</li>
+  })
+
+  function changer(event) {
+    setNotes([...notes.slice(0, edit), event.target.value, ...notes.slice(edit + 1)])
+  }
+
+  function stopEdit(event) {
+    if (event.target.value == '') {
+      setNotes([...notes.slice(0, edit), ...notes.slice(edit + 1)])
+    }
+    setEdit(false);
+  }
+  function addItem() {
+    if (create) {
+      setNotes([...notes, create])
+      setCreate('');
+    }
+  }
+
+  let input;
+  if (edit || edit === 0) {
+    input = <input
+      value={edit ? notes[edit] : (edit === 0 ? notes[edit] : '')}
+      onChange={changer}
+      onBlur={stopEdit}
+    />
+  } else {
+    input = <input
+      value={create}
+      onChange={event => setCreate(event.target.value)}
+      onBlur={addItem}
+    />
+  }
+  return <ul>
+    {result}
+    {input}
+  </ul>
+}
+
+
+export default App18;
