@@ -773,20 +773,27 @@ const initProds = [
 function App23() {
   let [prods, setProds] = useState(initProds)
 
+  function remItem(idSet) {
+    setProds(prods.filter(product => product.id !== idSet))
+  }
+
   let result = prods.map(product => {
     return <tr key={product.id}>
       <td>{product.name}</td>
       <td>{product.catg}</td>
       <td>{product.cost}</td>
+      <td><button onClick={() => remItem(product.id)}>remove</button></td>
     </tr>
 
+
   })
-  return <table>
+  return <table style={{ width: '400px', textAlign: 'center' }}>
     <thead>
       <tr>
         <td>Имя</td>
         <td>Каталог</td>
         <td>Стоимость</td>
+        <td>Действие</td>
       </tr>
     </thead>
     <tbody>{result}</tbody>
