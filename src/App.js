@@ -799,4 +799,9 @@ function App23() {
     <tbody>{result}</tbody>
   </table>
 }
+
+// Форма для добавления в массив объектов в React
+
+
+
 export default App23;
