@@ -674,53 +674,52 @@ function App21() {
 
 
 // Реактивность массива объектов в React
-const initNotes = [
-  {
-    id: 'GYi9G_uC4gBF1e2SixDvu',
-    prop1: 'value11',
-    prop2: 'value12',
-    prop3: 'value13',
-  },
-  {
-    id: 'IWSpfBPSV3SXgRF87uO74',
-    prop1: 'value21',
-    prop2: 'value22',
-    prop3: 'value23',
-  },
-  {
-    id: 'JAmjRlfQT8rLTm5tG2m1L',
-    prop1: 'value31',
-    prop2: 'value32',
-    prop3: 'value33',
-  },
-];
-const newElem = {
-  id: 'GMNCZnFT4rbBP6cirA0Ha',
-  prop1: 'value41',
-  prop2: 'value42',
-  prop3: 'value43',
-};
-const data = {
-  id: 'IWSpfBPSV3SXgRF87uO74',
-  prop1: 'value21 !',
-  prop2: 'value22 !',
-  prop3: 'value23 !',
-};
-const id = 'JAmjRlfQT8rLTm5tG2m1L';
-
-
-const id2 = 'JAmjRlfQT8rLTm5tG2m1L';
-const prop0 = 'prop1';
-const prop = 'prop2';
-const prop2 = 'prop3';
-// const value = 'govno'
+function idGen() {
+  return nanoid()
+}
 function App22() {
+  const initNotes = [
+    {
+      id: 'GYi9G_uC4gBF1e2SixDvu',
+      prop1: 'value11',
+      prop2: 'value12',
+      prop3: 'value13',
+    },
+    {
+      id: 'IWSpfBPSV3SXgRF87uO74',
+      prop1: 'value21',
+      prop2: 'value22',
+      prop3: 'value23',
+    },
+    {
+      id: 'JAmjRlfQT8rLTm5tG2m1L',
+      prop1: 'value31',
+      prop2: 'value32',
+      prop3: 'value33',
+    },
+  ];
+  const newElem = {
+    id: 'GMNCZnFT4rbBP6cirA0Ha',
+    prop1: 'value41',
+    prop2: 'value42',
+    prop3: 'value43',
+  };
+  const data = {
+    id: 'IWSpfBPSV3SXgRF87uO74',
+    prop1: 'value21 !',
+    prop2: 'value22 !',
+    prop3: 'value23 !',
+  };
+  const id = 'JAmjRlfQT8rLTm5tG2m1L';
+
+
+  const id2 = 'JAmjRlfQT8rLTm5tG2m1L';
+  const prop0 = 'prop1';
+  const prop = 'prop2';
+  const prop2 = 'prop3';
+
   let [notes, setNotes] = useState(initNotes)
   let [find, setFind] = useState();
-
-  function idGen() {
-    return nanoid()
-  }
 
   function newElement(index) {
     let newEl = {
@@ -743,14 +742,17 @@ function App22() {
 
   console.log(find)
 
-  const result2 = notes.reduce((note, res) => note.id === id ? note[prop0] : res, '')
+  const result2 = notes.reduce((res, note) => note.id === id ? note[prop0] : res, '')
 
   return <div>
     {result}
     <button onClick={() => setNotes(notes.filter(note => note.id !== id))}>Удалить</button>
     <button onClick={() => setNotes([...notes, newElement(notes.length + 1)])}>Добавить новый объект</button>
     <button onClick={() => setNotes(notes.map(note => note.id === id2 ? { ...note, [prop]: note[prop] + ' !', [prop2]: note[prop2] + ' ???' } : note))}>Поменять JAmjRlfQT8rLTm5tG2m1L</button>
-    <button onClick={() => setFind(notes.reduce((note, res) => note.id === id ? note[prop] : res, ''))}>Click find</button>
+    <br />
+    <button onClick={() => setFind(notes.reduce((res, note) => note.id === id ? note[prop] : res, ''))}>Click find</button>
+    <br />
+    {find}
 
     {/* <button onClick={() => notes.reduce((res, note) => note.id === id ? setFind({ ...data }) : res, {})}>Найти элемент</button>
     <button onClick={() => setFind([...data])}>ffff</button>
@@ -760,4 +762,34 @@ function App22() {
   </div>
 }
 
-export default App22;
+
+
+const initProds = [
+  { id: idGen(), name: 'prod1', catg: 'catg1', cost: 100 },
+  { id: idGen(), name: 'prod2', catg: 'catg2', cost: 200 },
+  { id: idGen(), name: 'prod3', catg: 'catg3', cost: 300 },
+];
+
+function App23() {
+  let [prods, setProds] = useState(initProds)
+
+  let result = prods.map(product => {
+    return <tr key={product.id}>
+      <td>{product.name}</td>
+      <td>{product.catg}</td>
+      <td>{product.cost}</td>
+    </tr>
+
+  })
+  return <table>
+    <thead>
+      <tr>
+        <td>Имя</td>
+        <td>Каталог</td>
+        <td>Стоимость</td>
+      </tr>
+    </thead>
+    <tbody>{result}</tbody>
+  </table>
+}
+export default App23;
