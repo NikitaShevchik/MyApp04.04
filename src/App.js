@@ -980,4 +980,87 @@ function App25() {
   </div>
 }
 
-export default App25;
+
+
+const initNotes = [
+  {
+    id: idGen(),
+    name: 'name1',
+    desc: 'long description 1',
+    show: false
+  },
+  {
+    id: idGen(),
+    name: 'name2',
+    desc: 'long description 2',
+    show: false
+  },
+  {
+    id: idGen(),
+    name: 'name3',
+    desc: 'long description 3',
+    show: false
+  },
+];
+
+
+function App26() {
+  const [notes, setNotes] = useState(initNotes)
+
+  function showDesc(id) {
+    setNotes(notes.map(note => {
+      if (note.id === id) {
+        return { ...note, show: !note.show }
+      } else {
+        return note;
+      }
+    }))
+  }
+
+  let result = notes.map(note => {
+    return <p key={note.id}>
+      {note.name}, {note.show ? <i>{note.desc}</i> : ''}
+      <button onClick={() => showDesc(note.id)}>{note.show ? 'hide description' : 'Show description'}</button>
+    </p >
+  });
+
+  return <div>
+    {result}
+  </div>
+}
+
+
+
+
+const initProducts = [
+  {
+    id: idGen(),
+    name: 'prod1',
+    cost: 'cost1',
+    desc: 'long description 1',
+    comm: 'my super comment 1'
+  },
+  {
+    id: idGen(),
+    name: 'prod2',
+    desc: 'long description 2',
+    comm: 'my super comment 2'
+  },
+  {
+    id: idGen(),
+    name: 'prod3',
+    desc: 'long description 3',
+    comm: 'my super comment 3'
+  },
+];
+
+// Выведите этот массив в виде списка ul. Сделайте так, чтобы описание и отзыв изначально были не показаны, а для их показа было две кнопки в конце каждой li.
+
+function App27() {
+
+  return <div>
+    fuck g
+  </div>
+}
+
+export default App27;
