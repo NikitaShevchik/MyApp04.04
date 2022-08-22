@@ -772,10 +772,48 @@ const initProds = [
 
 function App23() {
   let [prods, setProds] = useState(initProds)
+  let [obj, setObj] = useState(getInitObj())
 
   function remItem(idSet) {
     setProds(prods.filter(product => product.id !== idSet))
   }
+  // Форма для добавления в массив объектов в React
+  const [value1, setValue1] = useState('');
+  const [value2, setValue2] = useState('');
+  const [value3, setValue3] = useState('');
+
+  function addElement() {
+    let newObj = {
+      id: idGen(),
+      name: value1,
+      catg: value2,
+      cost: value3
+    }
+    setProds([...prods, newObj]);
+    setValue1('')
+    setValue2('')
+    setValue3('')
+  }
+
+  function getInitObj() {
+    return {
+      id: idGen(),
+      prop1: '',
+      prop2: '',
+      prop3: ''
+    }
+  }
+
+  function changeProp(prop, event) {
+    setObj({ ...obj, [prop]: event.target.value });
+  }
+  function addObject() {
+    setProds([...prods, obj])
+    setObj(getInitObj())
+    console.log(prods);
+    console.log(obj)
+  }
+
 
   let result = prods.map(product => {
     return <tr key={product.id}>
@@ -784,24 +822,37 @@ function App23() {
       <td>{product.cost}</td>
       <td><button onClick={() => remItem(product.id)}>remove</button></td>
     </tr>
-
-
   })
-  return <table style={{ width: '400px', textAlign: 'center' }}>
-    <thead>
-      <tr>
-        <td>Имя</td>
-        <td>Каталог</td>
-        <td>Стоимость</td>
-        <td>Действие</td>
-      </tr>
-    </thead>
-    <tbody>{result}</tbody>
-  </table>
+
+  return <div style={{ width: '600px' }}>
+    <table style={{ width: '100%', textAlign: 'center' }}>
+      <thead>
+        <tr>
+          <td>Имя</td>
+          <td>Каталог</td>
+          <td>Стоимость</td>
+          <td>Действие</td>
+        </tr>
+      </thead>
+      <tbody>{result}</tbody>
+    </table>
+    <div style={{ width: '100%', margin: '10px 0 0 0' }}>
+      <input style={{ width: '20%' }} value={obj.prop1} onChange={event => changeProp('prop1', event)} />
+      <input style={{ width: '20%', margin: '0 0 0 25px' }} value={obj.prop2} onChange={event => changeProp('prop2', event)} />
+      <input style={{ width: '20%', margin: '0 0 0 25px' }} value={obj.prop3} onChange={event => changeProp('prop3', event)} />
+      <button style={{ width: '20%', margin: '0 0 0 25px' }} onClick={addObject}>Add</button>
+    </div>
+  </div>
 }
 
 // Форма для добавления в массив объектов в React
 
+function App24() {
+
+  return <div>
+    Форма для добавления в массив объектов в React
+  </div>
+}
 
 
 export default App23;
