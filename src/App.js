@@ -845,11 +845,47 @@ function App23() {
 
 // Форма для редактирования массива объектов в React
 
+
+// const initProds = [
+//   { id: idGen(), name: 'prod1', catg: 'catg1', cost: 100 },
+//   { id: idGen(), name: 'prod2', catg: 'catg2', cost: 200 },
+//   { id: idGen(), name: 'prod3', catg: 'catg3', cost: 300 },
+// ];
+
 function App24() {
+  const [prods, setProds] = useState(initProds);
+  const [editId, setEditId] = useState(null);
+
+  function getValue(prop) {
+    return prods.reduce((res, prod) => prod.id === editId ? prod[prop] : res, '');
+  }
+
+  const result = prods.map(prod => {
+    return <tr key={prod.id}>
+      <td>{prod.name}</td>
+      <td>{prod.catg}</td>
+      <td>{prod.cost}</td>
+      <td><button onClick={() => setEditId(prod.id)}>Edit</button></td>
+    </tr>;
+  });
+
+  function changeItem(prop, event) {
+    setProds(prods.map(prod =>
+      prod.id === editId ? { ...prod, [prop]: event.target.value } : prod
+    ));
+  }
 
   return <div>
-    Форма для редактирования массива объектов в React
-  </div>
+    <table>
+      <thead>
+        {result}
+      </thead>
+    </table>
+    <input value={getValue('name')} onChange={event => changeItem('name', event)} />
+    <input value={getValue('catg')} onChange={event => changeItem('catg', event)} />
+    <input value={getValue('cost')} onChange={event => changeItem('cost', event)} />
+    <button onClick={() => setEditId(null)}>Save</button>
+  </div>;
 }
 
 
