@@ -782,36 +782,34 @@ function App23() {
   const [value2, setValue2] = useState('');
   const [value3, setValue3] = useState('');
 
-  function addElement() {
-    let newObj = {
-      id: idGen(),
-      name: value1,
-      catg: value2,
-      cost: value3
-    }
-    setProds([...prods, newObj]);
-    setValue1('')
-    setValue2('')
-    setValue3('')
-  }
+  // function addElement() {
+  //   let newObj = {
+  //     id: idGen(),
+  //     name: value1,
+  //     catg: value2,
+  //     cost: value3
+  //   }
+  //   setProds([...prods, newObj]);
+  //   setValue1('')
+  //   setValue2('')
+  //   setValue3('')
+  // }
 
   function getInitObj() {
     return {
       id: idGen(),
-      prop1: '',
-      prop2: '',
-      prop3: ''
+      name: '',
+      catg: '',
+      cost: ''
     }
   }
 
   function changeProp(prop, event) {
     setObj({ ...obj, [prop]: event.target.value });
   }
-  function addObject() {
+  function addObjecta() {
     setProds([...prods, obj])
     setObj(getInitObj())
-    console.log(prods);
-    console.log(obj)
   }
 
 
@@ -837,22 +835,22 @@ function App23() {
       <tbody>{result}</tbody>
     </table>
     <div style={{ width: '100%', margin: '10px 0 0 0' }}>
-      <input style={{ width: '20%' }} value={obj.prop1} onChange={event => changeProp('prop1', event)} />
-      <input style={{ width: '20%', margin: '0 0 0 25px' }} value={obj.prop2} onChange={event => changeProp('prop2', event)} />
-      <input style={{ width: '20%', margin: '0 0 0 25px' }} value={obj.prop3} onChange={event => changeProp('prop3', event)} />
-      <button style={{ width: '20%', margin: '0 0 0 25px' }} onClick={addObject}>Add</button>
+      <input style={{ width: '20%' }} value={obj.name} onChange={event => changeProp('name', event)} />
+      <input style={{ width: '20%', margin: '0 0 0 25px' }} value={obj.catg} onChange={event => changeProp('catg', event)} />
+      <input style={{ width: '20%', margin: '0 0 0 25px' }} value={obj.cost} onChange={event => changeProp('cost', event)} />
+      <button style={{ width: '20%', margin: '0 0 0 25px' }} onClick={addObjecta}>Add</button>
     </div>
   </div>
 }
 
-// Форма для добавления в массив объектов в React
+// Форма для редактирования массива объектов в React
 
 function App24() {
 
   return <div>
-    Форма для добавления в массив объектов в React
+    Форма для редактирования массива объектов в React
   </div>
 }
 
 
-export default App23;
+export default App24;
