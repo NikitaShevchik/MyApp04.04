@@ -960,4 +960,24 @@ function AppTestEditor() {
   </div>
 }
 
-export default AppTestEditor;
+
+
+// Стейты и условный рендеринг тегов в React
+
+
+function App25() {
+  const [visible, setVisible] = useState(false);
+  const [visible2, setVisible2] = useState(false)
+  const [visible3, setVisible3] = useState(false)
+
+  return <div>
+    {visible ? <p>Меня видно и я 1й</p> : ''}
+    {visible2 ? <p>Меня видно я 2й</p> : ''}
+    {visible3 ? <p>Меня видно, но я 3й</p> : ''}
+    <button onClick={() => setVisible(!visible)}>{visible ? 'Hide 1st' : 'Show 1st'}</button>
+    <button onClick={() => setVisible2(!visible2)}>{visible2 ? 'Hide 2nd' : 'Show 2nd'}</button>
+    <button onClick={() => setVisible3(!visible3)}>{visible3 ? 'Hide 3rd' : 'Show 3rd'}</button>
+  </div>
+}
+
+export default App25;
