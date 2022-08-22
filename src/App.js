@@ -1092,4 +1092,52 @@ function App27() {
   </ul>
 }
 
-export default App27;
+
+//Редактирование тега появляющимся инпутом в React
+
+function App28() {
+  const [value, setValue] = useState('Nikita');
+  const [isEdit, setIsEdit] = useState(false);
+
+  const [text, setText] = useState('Большой текст который мы изменим если чо');
+  const [show, setShow] = useState(true);
+
+  let elem;
+
+  if (!isEdit) {
+    elem = <span onDoubleClick={() => setIsEdit(true)}>{value}</span>
+  } else {
+    elem = <input onBlur={() => setIsEdit(false)} value={value} onChange={event => setValue(event.target.value)} />
+  }
+
+  let block;
+
+  if (show) {
+    block = <span>{text}</span>
+  } else {
+    block = <input value={text} onChange={event => setText(event.target.value)} />
+  }
+
+  return <div>
+    {elem}
+    <div style={{ padding: '10px 0' }}>
+      {block}
+      <div style={{ padding: '10px 0' }}>
+        <button onClick={() => setShow(false)}>Режим редактирования</button>
+        <button onClick={() => setShow(true)}>Режим просмотра</button>
+      </div>
+    </div>
+  </div>
+}
+
+
+// Редактирование элементов списка появляющимся инпутом в React
+
+function App29() {
+
+  return <div>
+    Редактирование элементов списка появляющимся инпутом в React
+  </div>
+}
+
+export default App28;
