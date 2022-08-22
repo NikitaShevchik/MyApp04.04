@@ -888,5 +888,76 @@ function App24() {
   </div>;
 }
 
+function AppTestEditor() {
+  let usersData = [
+    { id: idGen(), name: 'Nikita', surname: 'Shevchik', age: 22 },
+    { id: idGen(), name: 'Oleg', surname: 'LSP', age: 30 },
+    { id: idGen(), name: 'Andrew', surname: 'Qweerty', age: 55 },
+  ];
 
-export default App24;
+  let [user, setUser] = useState(usersData);
+  let [editId, setEditId] = useState(null)
+
+  let result = user.map(user => {
+    return <div key={user.id} style={{ minWidth: '250px', margin: '0 0 10px 0', display: 'flex' }}>
+      <div style={{ border: '1px solid #000', minWidth: '200px', padding: '10px' }}>
+        <span>Name: {user.name}</span>
+        <br />
+        <span>Surname: {user.surname}</span>
+        <br />
+        <span>Age: {user.age}</span>
+      </div>
+      <button onClick={() => setEditId(user.id)}>Edit</button>
+      <button onClick={() => deleteUser(user.id)}>Delete</button>
+    </div>
+  })
+
+  function setValue(prop) {
+    return user.reduce((res, user) => user.id === editId ? user[prop] : res, '')
+  }
+
+  function editorWithId(event, prop) {
+    setUser(user.map(user =>
+      user.id === editId ? { ...user, [prop]: event.target.value } : user))
+  }
+
+  function deleteUser(id) {
+    setUser(user.filter(user => user.id !== id))
+  }
+
+  function editInputs() {
+    return <div>
+      <input value={setValue('name')} onChange={event => editorWithId(event, 'name')} />
+      <input value={setValue('surname')} onChange={event => editorWithId(event, 'surname')} />
+      <input value={setValue('age')} onChange={event => editorWithId(event, 'age')} />
+      <button onClick={() => setEditId(null)}>Save</button>
+    </div>
+  }
+
+  let [value1, setValue1] = useState('');
+  let [value2, setValue2] = useState('');
+  let [value3, setValue3] = useState('');
+
+  function addNewUser() {
+    setUser([...user, { id: idGen(), name: value1, surname: value2, age: value3 }])
+    setValue1('');
+    setValue2('');
+    setValue3('');
+  }
+
+  function addUser() {
+    return <div>
+      <input value={value1} onChange={event => setValue1(event.target.value)} />
+      <input value={value2} onChange={event => setValue2(event.target.value)} />
+      <input value={value3} onChange={event => setValue3(event.target.value)} />
+      <button onClick={() => addNewUser()}>Add</button>
+    </div>
+  }
+
+  return <div>
+    {result}
+    {editId !== null ? editInputs() : addUser()}
+  </div>
+}
+
+export default AppTestEditor;
