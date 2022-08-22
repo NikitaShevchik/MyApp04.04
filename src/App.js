@@ -1038,29 +1038,58 @@ const initProducts = [
     name: 'prod1',
     cost: 'cost1',
     desc: 'long description 1',
-    comm: 'my super comment 1'
+    comm: 'my super comment 1',
+    showDesc: false,
+    showComm: false
   },
   {
     id: idGen(),
     name: 'prod2',
+    cost: 'cost2',
     desc: 'long description 2',
-    comm: 'my super comment 2'
+    comm: 'my super comment 2',
+    showDesc: false,
+    showComm: false
   },
   {
     id: idGen(),
     name: 'prod3',
+    cost: 'cost3',
     desc: 'long description 3',
-    comm: 'my super comment 3'
+    comm: 'my super comment 3',
+    showDesc: false,
+    showComm: false
   },
 ];
 
 // Выведите этот массив в виде списка ul. Сделайте так, чтобы описание и отзыв изначально были не показаны, а для их показа было две кнопки в конце каждой li.
 
 function App27() {
+  let [prod, setProd] = useState(initProducts)
 
-  return <div>
-    fuck g
-  </div>
+  function showSwitch(id, prop) {
+    setProd(prod.map(prod => {
+      if (prod.id === id) {
+        return { ...prod, [prop]: !prod[prop] }
+      } else {
+        return prod
+      }
+    }))
+  }
+
+  let result = prod.map(prd => {
+    return <li key={prd.id}>
+      {prd.name}, {prd.cost}{prd.showDesc && `, ${prd.desc}`}{prd.showComm && `, ${prd.comm}`}
+      <div style={{ margin: '10px 0' }}>
+        <button onClick={() => showSwitch(prd.id, 'showDesc')}>{prd.showDesc ? 'Hide description' : 'Show description'}</button>
+        <button onClick={() => showSwitch(prd.id, 'showComm')}> {prd.showComm ? 'Hide review' : 'Show review'}</button>
+      </div>
+    </li >
+  })
+
+  return <ul>
+    {result}
+  </ul>
 }
 
 export default App27;
