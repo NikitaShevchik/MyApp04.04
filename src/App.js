@@ -1220,5 +1220,122 @@ function App30() {
 
 
 //Редактирование ячеек таблицы появляющимся инпутом в React
+let practiceTable = [
+  {
+    id: idGen(),
+    fields: [
+      { name: 'prop1', value: 'value11', isEdit: false },
+      { name: 'prop2', value: 'value12', isEdit: false },
+      { name: 'prop3', value: 'value13', isEdit: false },
+    ]
+  },
+  {
+    id: idGen(),
+    fields: [
+      { name: 'prop1', value: 'value21', isEdit: false },
+      { name: 'prop2', value: 'value22', isEdit: false },
+      { name: 'prop3', value: 'value23', isEdit: false },
+    ]
+  },
+  {
+    id: idGen(),
+    fields: [
+      { name: 'prop1', value: 'value31', isEdit: false },
+      { name: 'prop2', value: 'value32', isEdit: false },
+      { name: 'prop3', value: 'value33', isEdit: false },
+    ]
+  },
+];
 
-export default App30;
+
+function AppPractice() {
+  let [notes, setNotes] = useState(practiceTable);
+
+  let rows = notes.map(row => {
+    let cells = row.fields.map((cell, index) => {
+
+      let elem;
+      if (cell.isEdit) {
+        elem = <input onChange={event => changeCell(row.id, cell.name, event)} onBlur={() => endEdit(row.id, cell.name)} value={cell.value} />
+      } else {
+        elem = <span onClick={() => startEdit(row.id, cell.name)} >{cell.value}</span>
+      }
+
+      return <td key={cell.name}>{elem}</td>
+    });
+    return <tr key={row.id}>{cells}</tr>
+  })
+
+  function startEdit(id, name) {
+    setNotes(notes.map(note => {
+      if (note.id === id) {
+        const fields = note.fields.map(field => {
+          if (field.name === name) {
+            return { ...field, isEdit: true }
+          } else {
+            return field;
+          }
+        });
+
+        return { id, fields };
+      } else {
+        return note;
+      }
+    }));
+  }
+
+  function endEdit(id, name) {
+    setNotes(notes.map(note => {
+      if (note.id === id) {
+        const fields = note.fields.map(field => {
+          if (field.name === name) {
+            return { ...field, isEdit: false }
+          } else {
+            return field;
+          }
+        });
+
+        return { id, fields };
+      } else {
+        return note;
+      }
+    }));
+  }
+
+  function changeCell(id, name, event) {
+    setNotes(notes.map(note => {
+      if (note.id === id) {
+        const fields = note.fields.map(field => {
+          if (field.name === name) {
+            return { ...field, value: event.target.value }
+          } else {
+            return field;
+          }
+        });
+
+        return { id, fields };
+      } else {
+        return note;
+      }
+    }));
+  }
+
+
+
+  return <table>
+    <thead style={{ fontWeight: 'bold' }}>
+      <tr>
+        <td>First</td>
+        <td>Second</td>
+        <td>Third</td>
+      </tr>
+    </thead>
+    <tbody>
+      {rows}
+    </tbody>
+  </table>
+}
+
+
+
+export default AppPractice;
