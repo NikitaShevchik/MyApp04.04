@@ -1132,12 +1132,90 @@ function App28() {
 
 
 // Редактирование элементов списка появляющимся инпутом в React
-
+const initNotes2 = [
+  { text: 'note1', isEdit: false },
+  { text: 'note2', isEdit: false },
+  { text: 'note3', isEdit: false },
+];
 function App29() {
+  const [note, setNote] = useState(initNotes2);
+
+
+  function startEdit(index) {
+    const copy = Object.assign([], note);
+    copy[index].isEdit = true;
+    setNote(copy);
+  }
+
+  function endEdit(index) {
+    const copy = Object.assign([], note);
+    copy[index].isEdit = false;
+    setNote(copy);
+  }
+
+  function changeNote(index, event) {
+    const copy = Object.assign([], note);
+    copy[index].text = event.target.value;
+    setNote(copy);
+  }
+
+  let result = note.map((note, index) => {
+    let elem;
+
+    if (note.isEdit !== true) {
+      elem = <span onClick={() => startEdit(index)}>{note.text}</span>;
+    } else {
+      elem = <input value={note.text} onChange={event => changeNote(index, event)} onBlur={() => endEdit(index)} />
+    }
+    return <li key={index}>{elem}</li>
+  })
+
+  return <ul>{result}</ul>
+}
+
+// Дан массив. Выведите его в виде списка ul. В конце каждой li сделайте кнопку для редактирования. 
+// Пусть по первому нажатию на эту кнопку в тексте li появляется инпут для редактирования, а по второму нажатию - появляется измененный текст.
+
+
+const testArray30 = [
+  { name: 'Nikita', isEdit: false },
+  { name: 'Andrew', isEdit: false },
+  { name: 'Sergey', isEdit: false },
+]
+
+function App30() {
+  let [user, setUser] = useState(testArray30);
+
+  function startEdit(index) {
+    let copy = Object.assign([], user);
+    copy[index].isEdit = !copy[index].isEdit;
+    setUser(copy)
+  }
+
+  function editorMode(index, event) {
+    let copy = Object.assign([], user);
+    copy[index].name = event.target.value;
+    setUser(copy)
+  }
+
+  let result = user.map((user, index) => {
+    let elem;
+
+    if (user.isEdit) {
+      elem = <input value={user.name} onChange={event => editorMode(index, event)} />
+    } else {
+      elem = <span>{user.name}</span>
+    }
+
+    return <li key={index}>{elem} <button onClick={() => startEdit(index)}>{user.isEdit ? 'Save' : 'Edit'}</button></li>
+  })
+
 
   return <div>
-    Редактирование элементов списка появляющимся инпутом в React
+    Дан массив. Выведите его в виде списка ul. В конце каждой li сделайте кнопку для редактирования.
+    Пусть по первому нажатию на эту кнопку в тексте li появляется инпут для редактирования, а по второму нажатию - появляется измененный текст.
+    <ul>{result}</ul>
   </div>
 }
 
-export default App28;
+export default App30;
