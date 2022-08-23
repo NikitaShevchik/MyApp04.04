@@ -1256,9 +1256,9 @@ function AppPractice() {
 
       let elem;
       if (cell.isEdit) {
-        elem = <input onChange={event => changeCell(row.id, cell.name, event)} onBlur={() => endEdit(row.id, cell.name)} value={cell.value} />
+        elem = <input onChange={event => changeCell(row.id, cell.name, event)} onBlur={() => changeMode(row.id, cell.name, false)} value={cell.value} />
       } else {
-        elem = <span onClick={() => startEdit(row.id, cell.name)} >{cell.value}</span>
+        elem = <span onClick={() => changeMode(row.id, cell.name, true)} >{cell.value}</span>
       }
 
       return <td key={cell.name}>{elem}</td>
@@ -1266,30 +1266,12 @@ function AppPractice() {
     return <tr key={row.id}>{cells}</tr>
   })
 
-  function startEdit(id, name) {
+  function changeMode(id, name, boolean) {
     setNotes(notes.map(note => {
       if (note.id === id) {
         const fields = note.fields.map(field => {
           if (field.name === name) {
-            return { ...field, isEdit: true }
-          } else {
-            return field;
-          }
-        });
-
-        return { id, fields };
-      } else {
-        return note;
-      }
-    }));
-  }
-
-  function endEdit(id, name) {
-    setNotes(notes.map(note => {
-      if (note.id === id) {
-        const fields = note.fields.map(field => {
-          if (field.name === name) {
-            return { ...field, isEdit: false }
+            return { ...field, isEdit: boolean }
           } else {
             return field;
           }
