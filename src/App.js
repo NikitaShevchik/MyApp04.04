@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { nanoid } from 'nanoid'; // Библиотека позволяющая генерировать случайные сроки (для айди)\
 import Product from './product';
 import User from './user';
+import Employee from './emloyee';
 
 function App1() {
   const users = [
@@ -1329,6 +1330,9 @@ function AppComponent1() {
     <User name='Nikita' age='22' />
     <User name='Oleg' age='31' />
     <User name='Ivan' age='44' />
+    <Employee name='Алексей' surname='Афанаснев' fathername='Владимирович' salary='12000' />
+    <Employee name='Николай' surname='Гантелевич' fathername='Выходсилович' salary='45000' />
+    <Employee name='Носков' surname='Потеряев' fathername='Левыч' salary='890500' />
   </div>
 }
 
