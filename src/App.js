@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { nanoid } from 'nanoid'; // Библиотека позволяющая генерировать случайные сроки (для айди)
+import { nanoid } from 'nanoid'; // Библиотека позволяющая генерировать случайные сроки (для айди)\
+import Product from './product';
+import User from './user';
 
 function App1() {
   const users = [
@@ -1258,7 +1260,7 @@ function AppPractice() {
       if (cell.isEdit) {
         elem = <input onChange={event => changeCell(row.id, cell.name, event)} onBlur={() => changeMode(row.id, cell.name, false)} value={cell.value} />
       } else {
-        elem = <span onClick={() => changeMode(row.id, cell.name, true)} >{cell.value}</span>
+        elem = <span onDoubleClick={() => changeMode(row.id, cell.name, true)} >{cell.value}</span>
       }
 
       return <td key={cell.name}>{elem}</td>
@@ -1302,8 +1304,6 @@ function AppPractice() {
     }));
   }
 
-
-
   return <table>
     <thead style={{ fontWeight: 'bold' }}>
       <tr>
@@ -1320,4 +1320,16 @@ function AppPractice() {
 
 
 
-export default AppPractice;
+// Введение в компоненты React
+
+function AppComponent1() {
+
+  return <div>
+    <Product />
+    <User />
+    <User />
+    <User />
+  </div>
+}
+
+export default AppComponent1;
