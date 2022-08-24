@@ -1326,9 +1326,9 @@ function AppComponent1() {
 
   return <div>
     <Product />
-    <User />
-    <User />
-    <User />
+    <User name='Nikita' age='22' />
+    <User name='Oleg' age='31' />
+    <User name='Ivan' age='44' />
   </div>
 }
 
