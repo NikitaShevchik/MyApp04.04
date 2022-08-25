@@ -4,6 +4,7 @@ import Product from './product';
 import User from './user';
 import Employee from './emloyee';
 import UserTable from './userBase';
+import UserCard from './userCard';
 
 function App1() {
   const users = [
@@ -1347,16 +1348,76 @@ const userBase = [
 
 function AppComponent2() {
   let result = userBase.map(user => {
-    return <UserTable name={user.name} surname={user.surname} fathername={user.fathername} salary={user.salary} />
+    return <UserTable key={user.id} name={user.name} surname={user.surname} fathername={user.fathername} salary={user.salary} />
   })
 
   return <table>
     <thead>
-      {result}
+      <tr style={{ fontWeight: 'bold' }}>
+        <td>Имя</td>
+        <td>Фамилия</td>
+        <td>Отчество</td>
+        <td>Зарплата</td>
+      </tr>
     </thead>
+    <tbody>
+      {result}
+    </tbody>
   </table>
-
-
 }
 
-export default AppComponent2;
+// Передача стейтов в дочерние компоненты в React
+function AppComponent3() {
+  let [user, setUser] = useState(userBase);
+
+  const users = user.map(user => {
+    return <UserCard
+      key={user.id}
+      id={user.id}
+      name={user.name}
+      surname={user.surname}
+      fathername={user.fathername}
+      salary={user.salary}
+    />;
+  });
+
+  return <div>
+    {users}
+  </div>;
+}
+
+const productsBase = [
+  { id: idGen(), name: 'Milk', cost: 100, inCart: false },
+  { id: idGen(), name: 'Cheese', cost: 200, inCart: false },
+  { id: idGen(), name: 'Crisps', cost: 300, inCart: false },
+]
+
+function AppComponent4() {
+  let [product, setProduct] = useState(productsBase)
+
+  let catalog = product.map(prod => {
+
+    function addToCart(id) {
+      setProduct(product.map(prod => {
+        if (prod.id === id) {
+          prod.inCart = !prod.inCart
+        }
+        return prod;
+      }))
+    }
+
+    return <Product
+      key={prod.id}
+      id={prod.id}
+      name={prod.name}
+      cost={prod.cost}
+      inCart={prod.inCart}
+      addToCart={addToCart}
+    />
+  })
+
+  return <div>
+    {catalog}
+  </div>
+}
+export default AppComponent4;
