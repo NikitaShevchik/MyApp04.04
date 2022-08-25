@@ -5,6 +5,7 @@ import User from './user';
 import Employee from './emloyee';
 import UserTable from './userBase';
 import UserCard from './userCard';
+import Users from './Users';
 
 function App1() {
   const users = [
@@ -1420,4 +1421,40 @@ function AppComponent4() {
     {catalog}
   </div>
 }
-export default AppComponent4;
+
+
+let usersData = [
+  { id: idGen(), username: 'Alex2022', date: '22.04.2011', banned: false },
+  { id: idGen(), username: 'OlegMono009', date: '10.11.2017', banned: false },
+  { id: idGen(), username: 'Ivaaankilller29', date: '04.01.2014', banned: false }
+];
+
+function PracticeComponentUsers() {
+  const [user, setUser] = useState(usersData);
+
+  function banUser(id) {
+    setUser(user.map(user => {
+      if (user.id === id) {
+        user.banned = !user.banned
+      }
+      return user
+    }))
+  }
+
+
+  let userSet = user.map(user => {
+    return <Users
+      key={user.id}
+      id={user.id}
+      username={user.username}
+      date={user.date}
+      banned={user.banned}
+      banUser={banUser}
+    />
+  })
+
+  return <div>
+    {userSet}
+  </div>
+}
+export default PracticeComponentUsers;
