@@ -3,6 +3,7 @@ import { nanoid } from 'nanoid'; // Библиотека позволяющая 
 import Product from './product';
 import User from './user';
 import Employee from './emloyee';
+import UserTable from './userBase';
 
 function App1() {
   const users = [
@@ -1324,16 +1325,38 @@ function AppPractice() {
 // Введение в компоненты React
 
 function AppComponent1() {
+  const nameBase = 'Iven';
+  const avarageSalary = 10000;
 
   return <div>
     <Product />
     <User name='Nikita' age='22' />
     <User name='Oleg' age='31' />
     <User name='Ivan' age='44' />
-    <Employee name='Алексей' surname='Афанаснев' fathername='Владимирович' salary='12000' />
+    <Employee name='Алексей' surname='Афанаснев' fathername='Владимирович' salary={avarageSalary} />
     <Employee name='Николай' surname='Гантелевич' fathername='Выходсилович' salary='45000' />
-    <Employee name='Носков' surname='Потеряев' fathername='Левыч' salary='890500' />
+    <Employee name={nameBase} surname='Потеряев' fathername='Левыч' salary='890500' />
   </div>
 }
 
-export default AppComponent1;
+const userBase = [
+  { id: idGen(), name: 'Nikita', surname: 'Shevchik', fathername: 'Sergeevich', salary: 400000 },
+  { id: idGen(), name: 'Oleg', surname: 'Olegich', fathername: 'Olegov', salary: 55000 },
+  { id: idGen(), name: 'Alex', surname: 'Ivanov', fathername: 'Andreich', salary: 170000 }
+]
+
+function AppComponent2() {
+  let result = userBase.map(user => {
+    return <UserTable name={user.name} surname={user.surname} fathername={user.fathername} salary={user.salary} />
+  })
+
+  return <table>
+    <thead>
+      {result}
+    </thead>
+  </table>
+
+
+}
+
+export default AppComponent2;
