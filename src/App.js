@@ -1425,9 +1425,9 @@ function AppComponent4() {
 
 
 let usersData = [
-  { id: idGen(), username: 'Alex2022', date: '22.04.2011', banned: false },
-  { id: idGen(), username: 'OlegMono009', date: '10.11.2017', banned: false },
-  { id: idGen(), username: 'Ivaaankilller29', date: '04.01.2014', banned: false }
+  { id: idGen(), username: 'Alex2022', date: '22.04.2011', banned: false, isEdit: false },
+  { id: idGen(), username: 'OlegMono009', date: '10.11.2017', banned: false, isEdit: false },
+  { id: idGen(), username: 'Ivaaankilller29', date: '04.01.2014', banned: false, isEdit: false }
 ];
 
 function PracticeComponentUsers() {
@@ -1505,6 +1505,53 @@ function App31() {
 }
 
 
+function PracticeUser() {
+  const [user, setUser] = useState(usersData);
+
+  function banUser(id) {
+    setUser(user.map(user => {
+      if (user.id === id) {
+        user.banned = !user.banned
+      }
+      return user
+    }))
+  }
+
+  function editMode(id) {
+    setUser(user.map(user => {
+      if (user.id === id) {
+        user.isEdit = !user.isEdit
+      }
+      return user
+    }))
+  }
+  function editChanges(id, field, event) {
+    setUser(user.map(user => {
+      if (user.id === id) {
+        user[field] = event.target.value;
+      }
+      return user
+    }))
+  }
+
+  let userSet = user.map(user => {
+    return <Users
+      key={user.id}
+      id={user.id}
+      username={user.username}
+      date={user.date}
+      banned={user.banned}
+      isEdit={user.isEdit}
+      banUser={banUser}
+      editMode={editMode}
+      editChanges={editChanges}
+    />
+  })
+
+  return <div>
+    {userSet}
+  </div>
+}
 
 
-export default App31;
+export default PracticeUser;
