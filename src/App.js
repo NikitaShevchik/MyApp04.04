@@ -6,6 +6,7 @@ import Employee from './emloyee';
 import UserTable from './userBase';
 import UserCard from './userCard';
 import Users from './Users';
+import Product31 from './product31';
 
 function App1() {
   const users = [
@@ -1457,4 +1458,53 @@ function PracticeComponentUsers() {
     {userSet}
   </div>
 }
-export default PracticeComponentUsers;
+
+
+const initProds31 = [
+  { id: idGen(), name: 'product1', cost: 100, isEdit: false },
+  { id: idGen(), name: 'product2', cost: 200, isEdit: false },
+  { id: idGen(), name: 'product3', cost: 300, isEdit: false },
+];
+
+function App31() {
+  let [prod, setProd] = useState(initProds31)
+
+  function toggleMode(id) {
+    setProd(prod.map(prod => {
+      if (prod.id === id) {
+        prod.isEdit = !prod.isEdit
+      }
+      return prod
+    }))
+  }
+
+  function editProd(id, field, event) {
+    setProd(prod.map(prod => {
+      if (prod.id === id) {
+        prod[field] = event.target.value
+      }
+      return prod
+    }))
+  }
+
+  let result = prod.map(prod => {
+    return <Product31
+      key={prod.id}
+      id={prod.id}
+      name={prod.name}
+      cost={prod.cost}
+      isEdit={prod.isEdit}
+      toggleMode={toggleMode}
+      editProd={editProd}
+    />
+  })
+
+  return <div>
+    {result}
+  </div>
+}
+
+
+
+
+export default App31;

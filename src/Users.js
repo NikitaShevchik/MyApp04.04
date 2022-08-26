@@ -12,4 +12,7 @@ function Users({ name, id, date, banned, banUser }) {
     </div>
 }
 
+
+// Редактирование стейта родителя в дочернем компоненте
+
 export default Users;
