@@ -1,10 +1,23 @@
 import React from "react";
+import UserField from "./userField";
 
 function Users({ username, id, date, banned, banUser, isEdit, editMode, editChanges }) {
     return <div style={{ border: '1px solid #000', padding: '10px', width: '200px', margin: '0 0 20px 0' }}>
-        Username: {isEdit ? <input value={username} onChange={event => editChanges(id, 'username', event)} /> : <span>{username}</span>}
+        Username: <UserField
+            text={username}
+            id={id}
+            isEdit={isEdit}
+            type='username'
+            editChanges={editChanges}
+        />
         <br />
-        Joinded: {isEdit ? <input value={date} onChange={event => editChanges(id, 'date', event)} /> : <span>{date}</span>}
+        Joinded: <UserField
+            text={date}
+            id={id}
+            isEdit={isEdit}
+            type='date'
+            editChanges={editChanges}
+        />
         <br />
         Status: <span>{banned ? 'Banned' : 'Active'}</span>
         <br />
