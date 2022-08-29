@@ -11,6 +11,7 @@ import UserBigSetter from './userBig';
 import TestSet from './userBig';
 import Verdict from './Verdict';
 import TempIn from './TempIn';
+import Celsi from './celsi';
 
 function App1() {
   const users = [
@@ -1618,11 +1619,21 @@ function App33() {
 
 function Calculator() {
   const [temp, setTemp] = useState(0)
+  const [outside, setOutside] = useState(0)
 
-  return <div>
-    <Verdict temp={temp} />
-    <TempIn temp={temp} setTemp={setTemp} />
+  return <div style={{ display: 'flex', flexDirection: 'space-between', alignItems: 'center', width: '700px' }}>
+    <TempIn temp={temp} setTemp={setTemp} setOutside={setOutside} outside={outside} />
+    <Verdict temp={temp} outside={outside} />
   </div>
 }
 
-export default Calculator;
+
+function Cels() {
+  const [temp, setTemp] = useState(0)
+
+  return <div>
+    <Celsi temp={temp} setTemp={setTemp} />
+  </div>
+}
+
+export default Cels;
