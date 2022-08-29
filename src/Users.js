@@ -21,8 +21,10 @@ function Users({ username, id, date, banned, banUser, isEdit, editMode, editChan
         <br />
         Status: <span>{banned ? 'Banned' : 'Active'}</span>
         <br />
-        <button style={{ cursor: 'pointer' }} onClick={() => banUser(id)}>{banned ? 'Unban' : 'Ban'}</button>
-        <button style={{ cursor: 'pointer' }} onClick={() => editMode(id)} >{isEdit ? 'Save' : 'Edit'}</button>
+        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <button style={{ cursor: 'pointer' }} onClick={() => banUser(id)}>{banned ? 'Unban' : 'Ban'}</button>
+            <button style={{ cursor: 'pointer' }} onClick={() => editMode(id)} >{isEdit ? 'Save' : 'Edit'}</button>
+        </div>
     </div>
 }
 

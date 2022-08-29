@@ -7,6 +7,7 @@ import UserTable from './userBase';
 import UserCard from './userCard';
 import Users from './Users';
 import Product31 from './product31';
+import UserBigSetter from './userBig';
 
 function App1() {
   const users = [
@@ -1554,8 +1555,46 @@ function PracticeUser() {
 }
 
 
-// Редактирование стейта родителя в внучатом компоненте
+const userBigBase = [
+  { id: idGen(), name: 'user1', surname: 'surname1', password: 'password1' },
+  { id: idGen(), name: 'user2', surname: 'surname2', password: 'password2' },
+  { id: idGen(), name: 'user3', surname: 'surname3', password: 'password3' },
+]
+
+function App32() {
+  let [user, setUser] = useState(userBigBase);
+
+  function changeItem(id, type, event) {
+    setUser(user.map(user => {
+      if (user.id === id) {
+        user[type] = event.target.value;
+      }
+      return user;
+    }));
+  }
+
+  let row = user.map(user => {
+    return <UserBigSetter
+      key={user.id}
+      id={user.id}
+      name={user.name}
+      surname={user.surname}
+      password={user.password}
+      field={user.field}
+      changeItem={changeItem}
+    />
+  })
+
+  return <div>
+    <table>
+      <tbody>
+        {row}
+      </tbody>
+    </table>
+  </div>
+}
 
 
 
-export default PracticeUser;
+
+export default App32;
