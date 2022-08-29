@@ -8,6 +8,9 @@ import UserCard from './userCard';
 import Users from './Users';
 import Product31 from './product31';
 import UserBigSetter from './userBig';
+import TestSet from './userBig';
+import Verdict from './Verdict';
+import TempIn from './TempIn';
 
 function App1() {
   const users = [
@@ -1595,6 +1598,31 @@ function App32() {
 }
 
 
+// Компоненты в React рекомендовано разбивать на два типа: компоненты-контейнеры (умные, толстые) и презентационные (глупые, худые).
+
+// Компонент может передавать свое состояние вниз по дереву потомков в виде пропсов дочерних компонентов. 
+// Этот процесс называется нисходящим (top-down) или однонаправленным (unidirectional) потоком данных. 
+// Состояние всегда принадлежит определенному компоненту, и это состояние может влиять только на компоненты, являющиеся потомками данного компонента.
 
 
-export default App32;
+function App33() {
+  let [test, setTest] = useState('Nikita')
+
+  return <div>
+    {test}
+    <br />
+    <TestSet test={test} setTest={setTest} />
+  </div>
+}
+
+
+function Calculator() {
+  const [temp, setTemp] = useState(0)
+
+  return <div>
+    <Verdict temp={temp} />
+    <TempIn temp={temp} setTemp={setTemp} />
+  </div>
+}
+
+export default Calculator;

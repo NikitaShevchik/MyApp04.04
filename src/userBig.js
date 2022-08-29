@@ -25,4 +25,10 @@ function UserBigSetter({ id, name, surname, password, changeItem }) {
     </tr>
 }
 
-export default UserBigSetter;
+
+function TestSet({ test, setTest }) {
+    setTest('Olge')
+    return test;
+}
+
+export default TestSet;
