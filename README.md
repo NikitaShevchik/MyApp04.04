@@ -1,3 +1,5 @@
+# Learning React how to work. Theory and practice
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
